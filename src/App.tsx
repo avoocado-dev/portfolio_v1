@@ -3,6 +3,8 @@ import styled, {createGlobalStyle} from 'styled-components'
 import WorkExperience from "./components/WorkExperience"
 import Header from "./components/Header"
 import Publications from "./components/Publications";
+import { Analytics } from '@vercel/analytics/react';
+
 const GlobalStyles = createGlobalStyle`
   body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -72,6 +74,7 @@ export default function Home() {
         <WorkExperience/>
         <Publications/>
       </Container>
+      <Analytics />
     </div>
   )
 }
