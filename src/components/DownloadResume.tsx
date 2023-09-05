@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Title = styled.a`
-  font-size: calc(12px + 1vw);
+  font-size: 24px;
   font-weight: 400;
   color: #cae327;
   &:hover {

@@ -8,28 +8,29 @@ const Container = styled.div`
   border-radius: 25px;
   text-color: white;
   margin-bottom: 20px;
+  margin-left: 1vw;
 `
 
 const RowContainer = styled.div`
   margin-left: 7px;
   display: flex;
-  flex-direction: row;
+  align-items: center
 `
 const Name = styled.div`
   padding-left: 8px;
   color: white;
-  font-size: calc(14px + 1vw);
+  font-size: 24px;
   font-weight: 400;
 `
 const TimePeriod = styled.div`
   color: white;
-  font-size: calc(6px + 1vw);
+  font-size: 18px;
   font-weight: 400;
   margin-left: auto;
 `
 
 const StackItem = styled.div`
-  font-size: calc(2px + 1vw);
+  font-size: 14px;
   font-weight: 400;
   margin-right: 7px;
   background-color: #cae327;
@@ -46,7 +47,6 @@ const Description = styled.div`
 `
 
 const Icon = styled.img`
-  margin-top: 8px;
   margin-left: 5px;
   max-width: 16px;
 `;
@@ -57,15 +57,15 @@ export default function ProjectCell({name, imgSrc, timePeriod, siteLink, descrip
     <Container>
       <RowContainer>
         <img src={imgSrc} width="30" height="30" aria-label="business icon"></img>
-        <Name>{name}</Name>
+        {!siteLink && <Name>{name}</Name>}
         {siteLink && <>
           <a
           rel="noreferrer"
-          style={{ textDecoration: "none" }}
+          style={{ textDecoration: "none", display: "flex"}}
           href={siteLink}
           target="_blank"
           >
-
+            <Name>{name}</Name>
             <Icon alt="external link" src="/external-link.svg" />
           </a>
         </>}

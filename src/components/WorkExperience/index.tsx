@@ -6,10 +6,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: left;
   justify-content: left;
+  margin-bottom: 2vh;
 `
 
 const Title = styled.text`
-  font-size: calc(16px + 1vw);
+  font-size: 24px;
   font-weight: 400;
   color: #cae327;
   &:hover {

@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 `;
 
 const Title = styled.div`
-  font-size: calc(10px + 1vw);
+  font-size: 24px;
   font-weight: 400;
   color: #cae327;
   align-self: center;

@@ -16,12 +16,11 @@ const RowContainer = styled.div`
 `
 
 const Title = styled.div`
-  font-size: calc(10px + 1vw);
+  font-size: 24px;
   font-weight: 400;
   color: #cae327;
   align-self: center;
   margin-left: 5px;
-  margin-bottom: 15px;
 `;
 
 const Container = styled.div`
@@ -31,7 +30,6 @@ const Container = styled.div`
 `
 
 const Icon = styled.img`
-  margin-top: 5px;
   margin-left: 5px;
   max-width: 16px;
 `;
@@ -41,17 +39,17 @@ export default function DisplayPublicationsModal () {
   return (
     <Container>
       <RowContainer>
-        <Title>Microsoft representative at Supreme Court oral arguments for DACA</Title>
         <a
           rel="noreferrer"
-          style={{ textDecoration: "none" }}
+          style={{ textDecoration: "none", display: "flex" }}
           href="https://blogs.microsoft.com/on-the-issues/2020/06/18/scotus-upholds-daca-dreamers/"
           target="_blank"
         >
+          <Title>Microsoft representative at Supreme Court oral arguments for DACA</Title>
           <Icon alt="external link" src="/external-link.svg" />
         </a>
       </RowContainer>
-      <img src="./DACA.jpg" width="100%" aria-label="DACA image"></img>
+      <img src="./DACA.jpg" width="70%" aria-label="DACA image"></img>
     </Container>
   )
 }

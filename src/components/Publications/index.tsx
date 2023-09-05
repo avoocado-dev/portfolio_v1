@@ -9,7 +9,7 @@ const Container = styled.div`
 `
 
 const Title = styled.text`
-  font-size: calc(16px + 1vw);
+  font-size: 24px;
   font-weight: 400;
   color: #cae327;
   &:hover {
