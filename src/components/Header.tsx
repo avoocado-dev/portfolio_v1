@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DownloadResume from "./DownloadResume";
 
 const Title = styled.text`
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 800;
 `;
 
@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const Subtitle = styled.h3`
   margin: 0;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 400;
 `;
 
@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <Parent>
       <Selfie>
-        <img src="./selfie.jpg" width="100" height="100" aria-label="github icon"></img>
+        <img src="./selfie.jpg" width="90" height="90" aria-label="github icon"></img>
       </Selfie>
       <Container>
         <RowContainer>
@@ -56,10 +56,10 @@ export default function Header() {
           <Subtitle>Frontend Developer</Subtitle>
           <LinksContainer>
             <a href="https://github.com/avoocado-dev" target="_blank" rel="noreferrer">
-              <img src="./github.png" width="50" height="50" aria-label="github icon"></img>
+              <img src="./github.png" width="40" height="40" aria-label="github icon"></img>
             </a>
             <a href="https://www.linkedin.com/in/antonio-aguilar-gomez-14742a105/" target="_blank" rel="noreferrer">
-              <img src="./linkedin.png" width="50" height="50" aria-label="linkedin icon"></img>
+              <img src="./linkedin.png" width="40" height="40" aria-label="linkedin icon"></img>
             </a>
           </LinksContainer>
         </SubContainer>

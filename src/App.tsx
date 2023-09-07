@@ -34,7 +34,10 @@ const Description = styled.h5`
   font-size: 24px;
   font-weight: 300;
   color: grey;
-  width: 50%;
+  max-width: 80%;
+  @media screen and (max-width: 930px) {
+    max-width: 100%
+  }
   margin-top: 2vh;
 `
 
