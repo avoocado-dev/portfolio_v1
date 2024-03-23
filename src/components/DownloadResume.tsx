@@ -15,6 +15,6 @@ const Title = styled.a`
 
 export default function DownloadResume() {
   return (
-    <Title href="./Antonio_Aguilar_Resume_2023_n.pdf" download="Antonio_Aguilar_Resume_2023_n.pdf">Resume</Title>
+    <Title href="./antonio_resume.pdf" download="antonio_resume.pdf">Resume</Title>
   )
 }
