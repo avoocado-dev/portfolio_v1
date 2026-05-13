@@ -1,0 +1,169 @@
+import { CaseStudyHero } from "@/components/CaseStudyHero";
+import { Figure } from "@/components/Figure";
+import { Metric, MetricGrid } from "@/components/Metric";
+import { SectionIntro } from "@/components/SectionIntro";
+import { PayEquityWireframe } from "@/components/illustrations/PayEquityWireframe";
+
+export const metadata = {
+  title: "Pay Equity Analysis",
+  description:
+    "Redesigning the group detail page of Syndio's flagship pay equity product — leading with comparison status, surfacing what matters, and shipping it production-ready.",
+};
+
+<CaseStudyHero
+  eyebrow="Case study · Syndio"
+  title="Pay Equity Analysis"
+  lede="The field of pay equity has previously been dominated by legal consultants because of its focus on compliance. When Syndio was founded in 2017, it was the first to productize the offering, transforming weeks of meetings and endless PDF reports into a visual analysis delivered directly to customers. In 2024 we started our much needed redesign of it's most used feature."
+  meta={[
+    { label: "Role", value: "Frontend Engineer · UX" },
+    { label: "Timeframe", value: "2024 — 2025" },
+    { label: "Team", value: "Design, PM, 2 engineers" },
+    { label: "Stack", value: "React, TypeScript, Figma" },
+  ]}
+/>
+
+<PayEquityWireframe />
+
+## The problem
+
+Syndio's flagship product PayEQ pairs software with a team of experts who walk customers through pay equity analysis. It launched five years ago, and most of the product has been updated since. One page had quietly fallen behind though: the **group detail page**. This is where employees are organized into groups that do substantially similar work, which forms the basis for any pay comparison.
+
+The deeper problem was a posture shift: the service was carrying more weight than the software, and the group detail page (one of the most-used pages in the analysis flow) was difficult for customers to navigate themselves. The opportunity was to make the UI intuitive enough that customers could lead with the software. That would be better for them, and better for our software-as-a-service model.
+
+<SectionIntro title="Research and Design" label="About 3 months">
+  I'm an engineer, not a statistician. But learning just enough of a domain to know what actually matters to the people using your software is the part of UX engineering I like best.
+</SectionIntro>
+
+Even without deep statistical domain expertise, the inefficiency of the page jumped out the first time I sat with it. The customer feedback we'd been collecting confirmed it: the things people actually needed (the impacted side of the comparison, the p-value) were hard to find, while a lot of what was on screen wasn't load-bearing.
+
+The designer and I went through the existing feedback together and prioritized a list of changes to jumpstart the redesign.
+
+<Figure
+  src="/case-studies/pay-equity-ssg-annotated.png"
+  alt="Annotated screenshot of the current PayEQ group detail page (titled 'Current SSG detail') with five star-marked callouts: Control Panel, Average Gap, Comp vs. Predicted Chart, Help Materials, Messages, and Employee List. Each callout contains hand-written feedback notes about usability issues."
+  caption="A screenshot of the current group detail page with annotated callouts."
+/>
+
+<SectionIntro title="Design iterations">
+  This is the 1st project where I jumped into making and editing figma sheets! The designer drove Figma exploration and I technical considerations on the UX alongside feedback.  
+</SectionIntro>
+
+<Figure
+  src="/case-studies/pay-equity-ssg-iterations.png"
+  alt="Four design iterations of the group detail summary card. Each card explores a different layout for showing a statistically significant pay gap with controlled and uncontrolled comparison: one with a distribution chart and bullet list of metrics, one with a table-style breakdown of employee demographics and applied controls, one with a no-significant-gap variant in green plus mean and median figures, and one with two compensation values for men and women alongside a written summary of the gap."
+  caption="A selection of design iterations for the group detail card, exploring different ways to surface the gap, the impacted side, and the underlying data."
+  bare
+  frameClassName="bg-white"
+/>
+
+The redesign converged on three structural moves: a **stats bar** pinned to the top, an **info card** that led with the comparison status (red / yellow / green) and surfaced the p-value plus the adjusted and unadjusted gaps, and a **controls panel** that showed only applied controls inline (editing moved into a dedicated menu).
+
+The info card carried the most narrative weight. The comparison status is the symbol that drives whether a remediation budget gets allocated — sometimes the symbol behind a litigation case. We worked through several Figma directions; I flagged where high-fidelity treatments would balloon the render cost on dense tables, and we converged on a treatment that gave the status the visual hierarchy it needed without breaking performance.
+
+The controls panel was the cleanup pass. Editing-in-place sounds simple, but with five active controls it cluttered the page. Pulling editing into a dedicated menu let us treat the controls panel as a read-mostly summary — which matched how customers actually used it.
+
+<Figure
+  src="/case-studies/pay-equity-ssg-final-design.png"
+  alt="Final design of the group detail page components. At the top, a stats bar shows comparison tabs (Gender, White vs. Asian, etc.) and population stats (Total, Included, Men, Women, Omitted, Impacted side, Budget). Below, an informational card displays the statistically significant gap status, p-value, standard deviation, and a summary of the gap with adjusted/unadjusted comparisons and average comp values. At the bottom, a controls panel lists applied controls as chips (Education, Geo zone, Manages people, Performance, Years of experience) with an option to edit and a link to explore pay policy analytics."
+  caption="Final design of major group detail page components — the stats bar, info card, and controls panel."
+  width={1300}
+  height={900}
+  bare
+  frameClassName="bg-white"
+/>
+
+The page renders in more states than the happy path suggests: different pay-equity statuses, pre- and post-budget views, error states, and settings-change cascades. The designer and I worked through these together — she sketched the variants, I traced what each one meant in the component tree, and we iterated until every branch in code had a corresponding design. Our PM then referenced the final package to write the epics.
+
+The process was transparent throughout. Design, product squad, and the internal stakeholders were in the room at every step. That kept buy-in high and pulled us toward a final design everyone could stand behind. One of our domain experts said, "I didn't even know I needed this until I saw it."
+
+<Figure
+  src="/case-studies/pay-equity-ssg-before-after.png"
+  alt="Side-by-side comparison of the group detail page before and after the redesign. The before view shows the legacy layout with a small donut chart, scattered numbers, a dense list of applied controls, and a long employee table dominating the page. The after view shows the redesigned layout with a stats bar at the top, a clear comparison-status info card with adjusted and unadjusted gap figures, an applied-controls panel, the actual vs. predicted compensation scatter plot, and a streamlined employee list."
+  caption="Before and after the redesign — the new layout leads with comparison status and adjusted gap figures, replacing scattered charts and numbers with a clearer hierarchy."
+  bare
+  frameClassName="bg-white"
+/>
+<Figure
+  src="/case-studies/pay-equity-ssg-status-versions.png"
+  alt="Five variants of the group detail info card showing different comparison statuses: a red statistically significant gap, a yellow card approaching significance, a green no-significant-gap state, a small-group state suggesting cohort review, and an N/A state where no comparison is possible. Each variant adapts the icon, color, p-value treatment, and supporting copy to the underlying analysis result."
+  caption="State variants for the info card — red, yellow, green, small group, and N/A — each tuned to the underlying analysis result."
+  bare
+  frameClassName="bg-white"
+/>
+
+<SectionIntro title="Implementation" label="About 4 months">
+  Our squad always had several projects in flight, so I was the only front-end engineer assigned to this redesign. Tight budget, but the small team meant clear ownership and a short loop between design changes and shipped code.
+</SectionIntro>
+
+### Building the new primitives
+
+I built the major new pieces — stats bar, controls menu, tooltips — as keyboard-accessible, design-system-ready components so they could be reused on future projects. The designer and I did design QA together as each piece landed; the QA tester and I paired on accessibility coverage in parallel, so by the time the feature reached release it had been pressure-tested against keyboard navigation, screen reader output, and focus management.
+
+### Statistical-model scenarios and corner cases
+
+Our squad's QA tester is renowned for knowing the product inside out — nothing gets past her. As we started to wire up the redesign, she surfaced several scenarios the spec hadn't covered: Employee counts
+
+**The problem.** Each group has a total headcount, but each comparison inside the group has a different effective headcount (Men vs. Women might have 95; White vs. Black, 70; White vs. Hispanic, 55). Employees get dropped from a comparison for a handful of reasons — missing data, missing comp, manual ignore — and the legacy UI didn't surface most of them. Customers couldn't tell at a glance how many people their analysis was actually running on.
+
+**The solution.** We added two new stats to the stats bar — *Included* (the actual comparison headcount) and *Omitted* (the dropped employees) — plus a tooltip on *Omitted* that enumerates every drop reason. I built it as a generic stat slot so the pattern could be reused for future comparisons; the designer and I co-wrote the tooltip copy so it stayed accurate to the model.
+
+<Figure
+  src="/case-studies/pay-equity-ssg-stats-bar.png"
+  alt="The redesigned stats bar showing Total (1,234), Included (1,123), Men (568, 51%), Women (555, 49%), Omitted (111), Impacted side (Women), and Budget (Intersectional). Two tooltips are open: the Included tooltip explains it's the number of employees included in this comparison's statistical model, and the Omitted tooltip lists the reasons an employee can be omitted — Neither (not associated with either comparison side), Ignored (manually removed from the analysis), Missing data (missing applied controls or compensation data, not counting imputed data), and Zero compensation (when log normalization is enabled and compensation is 0)."
+  caption="The new stats bar with “Included” and “Omitted” stats and tooltips."
+  bare
+  frameClassName="bg-white"
+/>
+
+## Corner case: Small groups
+
+**The problem.** Syndio has a concept called *small groups* — groups where the headcount is too small for the statistical model to land with confidence. The triggering conditions are deceptively dense: a group can be "small" if it has fewer than 30 employees total, or if one side of the comparison has fewer than 10 (5, on some configurations), or if applied controls push the column count above the row count. The legacy UI told customers when a group was small but couldn't communicate *which kind*, and internally not everyone on the team could keep all the triggering conditions straight.
+
+**The solution.** The designer mapped every small-group scenario into a matrix chart. She and the QA tester refined it (twice), then she designed a UI variant for each cell. I leaned on the matrix heavily on the engineering side — every cell needed a clean branch in code, with the right copy and the right downstream behavior (some small groups are budgetable, others aren't; some surface a status, others don't).
+
+<Figure
+  src="/case-studies/pay-equity-ssg-small-group-matrix.png"
+  alt="Matrix chart mapping small group scenarios. Rows are the headcount of one side of the comparison (y ≥ 10, then y < 10 / y = any). Columns are the total headcount (x < 30 vs. x ≥ 30) further split by whether the number of employee rows exceeds the number of control columns. Within each cell, no-control and at-least-one-control cases are called out as hybrid (status, not budgetable, small group UI), regular group (status, budgetable), or small group (no status, not budgetable). The bottom row collapses to a single small-group cell regardless of x."
+  caption="Small group scenario diagram. X represents the total headcount of the comparison. Y represents the headcount of one side of the comparison."
+  bare
+  frameClassName="bg-white"
+/>
+
+<Figure
+  src="/case-studies/pay-equity-ssg-small-group-example.png"
+  alt="Phase 2 small-group typical scenario. On the left, the group detail page renders for QRS Division: a stats bar with comparison tabs (Gender, White vs. Asian, White vs. Black, White vs. Native American, White vs. LatinX), an info card showing a small-group state suggesting cohort review with median test and t-test p-values, adjusted and unadjusted gap figures, average comp by group, a controls panel listing applied controls, and an employee list with comp columns. On the right, the small-group matrix from the previous figure with a star highlighting the specific cell this scenario maps to."
+  caption="Example of UI that would display based on a specific small group scenario."
+  bare
+  frameClassName="bg-white"
+/>
+
+Engineers and QA testers tend to speak the same language — both are looking for what breaks. The unusual thing on this project was how early in the process the QA collaboration started. Most of the corner cases that became real designs surfaced before the first PR landed. The small-group matrix the designer built to keep the scenarios straight was so effective that even one of our domain experts asked her for a copy.
+
+## Outcome
+
+<MetricGrid>
+  <Metric value="40%" label="Reduction in support tickets" caption="Group detail page tickets after launch." />
+  <Metric value="90%" label="Self-service usage uplift" caption="Customers completing the analysis without consulting touch." />
+  <Metric value="20%" label="A11y coverage" caption="WCAG-AA primitive components shipped from this project." />
+</MetricGrid>
+
+<div className="mt-10 md:mt-12">
+  <div className="mb-6 h-px w-10 bg-accent" aria-hidden="true" />
+  <h2 className="text-[length:var(--text-h2)] font-bold leading-[1.05] tracking-tight">
+    Reflection
+  </h2>
+</div>
+
+<Figure
+  src="/case-studies/pay-equity-ssg-reflection-figma.png"
+  alt="Zoomed-out view of the project Figma file, showing many small sections of individual wireframes and design explorations laid out across the canvas — different phases of the group detail page, the info card, the small-group example, and supporting flows."
+  caption="The shared design file we worked from across the project — every iteration, state variant, and scenario lived here."
+  bare
+  frameClassName="bg-white"
+/>
+
+I've shipped a lot of UI revamps. This one stood out: the process was transparent from research through release, and we got to see it land in the hands of customers who had been asking for it for years. A few things I'll carry forward:
+
+- **Domain expertise is the guiding light for enterprise software.** The customers and our internal SMEs knew the math better than I ever would. Designing alongside them — not for them — kept us honest.
+- **Don't be afraid of complexity.** The small-group scenarios had real branches that mattered. Compressing any of them would have made the product worse.
+- **Strong QA partnership is rare; cultivate it.** Most teams treat QA as a gate at the end. The level of collaboration we had — with QA shaping the *design* by surfacing edge cases before the first PR — is unusual and worth replicating.

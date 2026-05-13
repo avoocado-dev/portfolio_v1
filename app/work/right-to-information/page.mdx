@@ -1,0 +1,155 @@
+import { CaseStudyHero } from "@/components/CaseStudyHero";
+import { FigurePlaceholder } from "@/components/FigurePlaceholder";
+import { Metric, MetricGrid } from "@/components/Metric";
+import { SectionIntro } from "@/components/SectionIntro";
+
+export const metadata = {
+  title: "Right to Information",
+  description:
+    "Building Syndio's Right to Information product — pay-comparison data for every employee, delivered through six integration paths to address Article 7 of the EU Pay Transparency Directive.",
+};
+
+<CaseStudyHero
+  eyebrow="Case study · Syndio"
+  title="Right to Information"
+  lede="Article 7 of the EU Pay Transparency Directive gives every employee the right to see how their pay compares to the average pay of men and women doing equal work — with a two-month response window. I built the product that lets companies answer that question at scale, across six different delivery paths."
+  meta={[
+    { label: "Role", value: "Frontend Engineer · UX" },
+    { label: "Timeframe", value: "2025 — 2026" },
+    { label: "Team", value: "Design, PM, engineers" },
+    { label: "Stack", value: "React, TypeScript, Figma" },
+  ]}
+/>
+
+{/* TODO: replace with a real hero illustration (RTI delivery options diagram?
+    one-click report screenshot? Article 7 visual?). The EU Directive title-card
+    PNG at /case-studies/eu-pay-transparency-directive-thumbnail.png is available
+    if you want to reuse it here. */}
+<FigurePlaceholder
+  caption="Hero illustration — TBD. Options: the six delivery paths diagram, a one-click report screenshot, or the EU Directive title card."
+  aspectRatio="16/9"
+/>
+
+## The problem
+
+Article 7 of the EU Pay Transparency Directive gives every employee in the EU the right to request — and receive within two months — a comparison of their own pay against the average pay of men and women doing work of equal value in their organization. For employers, that's a regulatory obligation with real teeth: late responses, incomplete responses, or inconsistent responses can each trigger penalties.
+
+The catch is that there's no single right way to deliver the information. Some employers want to push the comparison directly into their HRIS so it shows up in the employee's existing self-service portal. Others want a one-click report they can email. Others want an API they consume into their own internal tools. Right to Information had to support all of them.
+
+{/* TODO: tighten the problem framing once you confirm — was the regulatory
+    deadline the forcing function, or were customers asking for this as a
+    market differentiator first? */}
+
+<SectionIntro title="Research and Design" label="About TBD months">
+  {/* TODO: the research-and-design story. Suggested angle: customer interviews
+       surfaced that the delivery path mattered as much as the data itself —
+       no one delivery model fit every employer, so the product had to be
+       multi-pronged from day one. */}
+  Compliance products only land if they meet the customer where they already work. The delivery path mattered as much as the data itself — and no single path worked for every employer.
+</SectionIntro>
+
+{/* TODO: research body — customer calls, what you heard, how it shaped the
+    delivery-path strategy. */}
+
+<FigurePlaceholder
+  caption="TBD — research artifact (customer interview synthesis, delivery-path decision tree, etc.)."
+  aspectRatio="16/9"
+/>
+
+<SectionIntro title="Design iterations">
+  {/* TODO: how the six delivery paths converged. Was each one its own
+       Figma exploration? Did some paths fall out of customer requests vs.
+       internal design? */}
+  Six delivery paths went into the final product: API push to the customer's HRIS via Workato, direct API consumption into their own tools, a one-click PDF report generated in any of the 24 official EU languages, and three more — each tuned to a different customer integration posture.
+</SectionIntro>
+
+{/* TODO: body about iterating on the six paths. Which were obvious from
+    research, which surfaced during exploration, which were customer
+    requests that became patterns. */}
+
+<FigurePlaceholder
+  caption="TBD — design exploration of the six delivery paths."
+  aspectRatio="16/9"
+/>
+
+<FigurePlaceholder
+  caption="TBD — final UI for the one-click report generator (24 languages)."
+  aspectRatio="16/9"
+/>
+
+<SectionIntro title="Implementation" label="About TBD months">
+  {/* TODO: the implementation story. RTI has a clean public-facing API
+       (two endpoints), the Workato HRIS push, the consumption side UI in
+       PayEQ, and the one-click 24-language report generator. Architecture
+       was integration-heavy. */}
+  RTI was integration-heavy: a public API with two endpoints (one to fetch, one to push to HRIS via Workato), a consumption-side UI inside PayEQ for the admin workflow, and a one-click report generator that produced compliant PDFs in any of the 24 official EU languages. I built the frontend pieces and partnered with backend on the API contract.
+</SectionIntro>
+
+### The public API
+
+{/* TODO: describe your role on the API. Did you spec the contract? Build
+    the consumption-side client? Or focus on the admin UI that triggers it? */}
+
+- **`POST /v1/workspace/{id}/rightToInfo/`** — returns per-employee pay-comparison data as JSON (own pay annual + hourly, average pay for men in the SSG, average pay for women in the SSG). Customers consume this into their own systems.
+- **`POST /v1/workspace/{id}/rightToInfo/hris`** — same data, but pushed via Workato into the customer's HRIS (Workday and others).
+
+<FigurePlaceholder
+  caption="TBD — diagram of the two-endpoint API and the Workato HRIS push."
+  aspectRatio="16/9"
+/>
+
+### Multi-language report generation
+
+{/* TODO: the 24-language generator story. Did you build the template
+    system? Handle the translation pipeline? Solve any specific
+    internationalization challenges (RTL languages, character widths,
+    legal-tone consistency)? */}
+
+The one-click report generator produces a compliant PDF in any of the EU's 24 official languages. The hard part wasn't translation — it was making sure the *legal phrasing* stayed accurate when the same document had to read consistently across 24 jurisdictions with subtly different statutory references.
+
+<FigurePlaceholder
+  caption="TBD — sample reports in multiple languages, showing layout consistency."
+  aspectRatio="16/9"
+/>
+
+### Admin workflow inside PayEQ
+
+{/* TODO: describe the consumption-side admin UI. How did HR admins
+    configure who could request RTI? How did they monitor request volume?
+    How did the per-employee data flow surface in PayEQ alongside the
+    existing pay-equity analysis? */}
+
+<FigurePlaceholder
+  caption="TBD — admin UI inside PayEQ for configuring and monitoring RTI requests."
+  aspectRatio="16/9"
+/>
+
+## Outcome
+
+<MetricGrid>
+  <Metric value="#3" label="Revenue product at Syndio" caption="Third-largest revenue line." />
+  <Metric value="6" label="Delivery paths" caption="HRIS push via Workato, direct API consumption, one-click 24-language PDF, and three more." />
+  <Metric value="24" label="EU languages" caption="One-click report generation in every official EU language." />
+</MetricGrid>
+
+{/* TODO: outcome paragraph. What was the business or customer impact
+    beyond the metrics? Contracts unblocked? Differentiation from
+    competitors (the blog mentions Sysarb as a comparison)? */}
+
+<div className="mt-10 md:mt-12">
+  <div className="mb-6 h-px w-10 bg-accent" aria-hidden="true" />
+  <h2 className="text-[length:var(--text-h2)] font-bold leading-[1.05] tracking-tight">
+    Reflection
+  </h2>
+</div>
+
+<FigurePlaceholder
+  caption="TBD — Figma snapshot, or the delivery-paths overview if you want a single artifact to close on."
+  aspectRatio="16/9"
+/>
+
+{/* TODO: reflection paragraph + 2-3 lessons learned. */}
+
+- **TBD — lesson 1.**
+- **TBD — lesson 2.**
+- **TBD — lesson 3.**

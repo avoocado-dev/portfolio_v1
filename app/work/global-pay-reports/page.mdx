@@ -1,0 +1,158 @@
+import { CaseStudyHero } from "@/components/CaseStudyHero";
+import { Figure } from "@/components/Figure";
+import { FigurePlaceholder } from "@/components/FigurePlaceholder";
+import { Metric, MetricGrid } from "@/components/Metric";
+import { SectionIntro } from "@/components/SectionIntro";
+
+export const metadata = {
+  title: "Global Pay Reports",
+  description:
+    "Building Syndio's Global Pay Reports product from the ground up — a single platform for filing standardized pay reports across 35 jurisdictions and 43 countries.",
+};
+
+<CaseStudyHero
+  eyebrow="Case study · Syndio"
+  title="Global Pay Reports"
+  lede="Pay-data reporting laws are landing in jurisdiction after jurisdiction. Global Pay Reports unifies the compliance workflow into a single platform — 35 jurisdictions, 43 countries, one filing experience. I built the frontend from scratch."
+  meta={[
+    { label: "Role", value: "Frontend Engineer · UX" },
+    { label: "Timeframe", value: "2025 — 2026" },
+    { label: "Team", value: "Design, PM, engineers" },
+    { label: "Stack", value: "React, TypeScript, Figma" },
+  ]}
+/>
+
+<Figure
+  src="/case-studies/global-pay-reports-jurisdictions-map.png"
+  alt="Illustrated header graphic for pay-transparency reporting: a stylized white government building centered on a deep navy background, surrounded by a repeating pattern of teal document icons representing regulatory filings."
+  caption="Pay-data reporting laws are landing in jurisdiction after jurisdiction; Global Pay Reports brings the filings into one workflow."
+  width={2048}
+  height={1072}
+  bare
+/>
+
+## The problem
+
+Pay-data reporting laws are landing one after another. The UK has gender pay-gap reporting. Australia has WGEA. The EU Pay Transparency Directive obligates 27 member states to file under standardized requirements starting in 2027. California, Illinois, and Minnesota each have US-state pay-data reporting regimes. Every multinational employer has a growing list of country-by-country compliance burdens that don't talk to each other.
+
+For Syndio's customers — global HR, compensation, and legal teams — non-compliance meant fines, audits, and contract clawbacks. The status quo was a tangle of spreadsheets, jurisdiction-specific consultants, and bespoke processes. The opportunity was to ship a single product that turned all of that into one workflow.
+
+Global Pay Reports had to:
+
+- Cover **35 jurisdictions across 43 countries** at launch
+- Generate accurate, jurisdiction-specific filings without forcing the customer to be a regulatory expert in every country
+- Be auditable — every filing had to show its work
+- Be accessible at WCAG 2.1 AA from day one (international contracts required attestation)
+
+<SectionIntro title="Research and Design" label="About 3 months">
+  Compliance products that ignore the people doing the filing fail at launch. Before any code went in, we sat with the people who'd actually be doing this work.
+</SectionIntro>
+
+I joined customer calls with HR directors and compensation analysts at multinational employers — companies running pilot pay-gap reports under interim regulatory guidance in the EU, and companies already filing in jurisdictions where reporting laws had been on the books for years (UK, Australia). Two findings reshaped our PRD:
+
+1. **The audit trail mattered as much as the report itself.** Compliance officers wanted to show *how* a number was computed, not just submit the number. Every filing needed to be reproducible.
+2. **Cross-jurisdiction comparison was the killer feature.** A multinational HR team didn't want 35 disconnected filing tools — they wanted one place to see every jurisdiction's status side-by-side, knowing the methodologies differed.
+
+The designer and I translated these into three principles we held the team to: *show your work*, *make jurisdiction differences explicit*, *no silent rounding*.
+
+<FigurePlaceholder
+  caption="Synthesis of customer interview findings — themes, jurisdictional differences, and the principles that fell out."
+  aspectRatio="16/9"
+/>
+
+<SectionIntro title="Design iterations" label="About 1 month">
+  Components were simple. Getting the UX right took the rest of the month.
+</SectionIntro>
+
+The first surface customers see is the jurisdiction picker. We iterated on card density and on which metadata to surface per country — cadence, snapshot date, where the report gets filed — without making the card unreadable. We landed on two collections of per-country cards: guided self-serve up top, team-assisted below.
+
+<Figure
+  src="/case-studies/global-pay-reports-guided-report-builder.png"
+  alt="Guided report builder view in Global Pay Reports. A 'Guided report builder' heading with instructions to upload data using a step-by-step template, followed by a 3-column grid of country cards (Australia, France, Ireland, Israel, Italy, Japan, Spain, Sweden, United Kingdom, California). Each card shows a small tinted country/state map, the jurisdiction name, and its reporting cadence (e.g. 'Annually with report due by 31 May', 'Annual, 1 June', 'Every two years on 30 April')."
+  caption="The shipped guided report builder, where customers select a jurisdiction and generate a filing from a step-by-step template."
+  width={1405}
+  height={709}
+  bare
+  frameClassName="bg-white"
+/>
+
+<Figure
+  src="/case-studies/global-pay-reports-team-assisted-reports.png"
+  alt="Team-assisted reports view in Global Pay Reports. A 'Team-assisted reports' heading with instructions to fill out a template and submit it to the Syndio team, followed by a 3-column grid of country cards (Austria, Belgium, Brazil, Bulgaria, Canada BC, Canada Federal, Canada Ontario, Canada Quebec, Chile, Croatia, Cyprus, The Czech Republic). Each card has a small map of the country tinted with a unique color, the country name, and its reporting cadence (e.g. 'Every two years, by 31 March', 'November 1st', 'Rolling')."
+  caption="The shipped team-assisted reports view, with per-country cards summarizing each jurisdiction's filing cadence."
+  width={1412}
+  height={692}
+  bare
+  frameClassName="bg-white"
+/>
+
+Each jurisdiction then opens into its own report wizard. The three-step rhythm — download a template, upload the completed data, download the generated report — stays the same across every country, but the regulatory context above it (snapshot dates, scope, where filings get submitted) is country-specific. A Syndi shortcut and a country-specific reporting guide sit beside the steps so customers can ask questions or pull up the regulation without leaving the flow.
+
+<Figure
+  src="/case-studies/global-pay-reports-uk-wizard.png"
+  alt="United Kingdom report wizard in Global Pay Reports. A breadcrumb 'Global pay reports' leads to a 'United Kingdom' page header next to a small UK map illustration, with a paragraph explaining the legal context: UK law requires any employer with 250+ employees on the annual snapshot date to report gender pay gap data, with snapshot dates of 31 March (public authority) and 5 April (all other) employers, reports filed at the GOV.UK Gender pay gap service. Below sit two action links — 'Ask Syndi for assistance' and 'Download UK reporting guide' — followed by an expandable three-step flow: Step 1 (Download and complete data template) is open and shows a 'Download reporting template' button; Steps 2 (Upload completed data template) and 3 (Download UK pay report) are collapsed."
+  caption="The UK report wizard. Every jurisdiction shares the same three-step rhythm; the regulatory context above it is country-specific."
+  width={1196}
+  height={700}
+  bare
+  frameClassName="bg-white"
+/>
+
+<SectionIntro title="Implementation" label="About 6 months">
+  This was a from-scratch product. I owned the frontend end-to-end — the repo, the build pipeline, the design-system integration, the accessibility framework, every component that shipped. The constraint shaping every decision was that accessibility had to be a load-bearing property of the system, not a thing we audited at the end.
+</SectionIntro>
+
+### Building the repo for accessibility from day one
+
+I set up the codebase so WCAG 2.1 AA compliance was structural, not retrofitted:
+
+- **Primitives** — buttons, inputs, links, menus, dialogs — built with full keyboard support, focus management, and semantic HTML from the first commit. Design tokens drove contrast ratios; nothing could ship under 4.5:1 for normal text or 3:1 for large text.
+- **Composed components** — data tables, the filing wizard, the comparison dashboard — wrapped primitives so the accessibility properties propagated automatically. `aria-live` regions handled async submission feedback. Long-running flows announced progress to screen readers.
+- **Skip links, landmarks, and a logical tab order** were baked into the page-level layouts. Every route was navigable end-to-end with the keyboard alone.
+- **Reduced motion, dark mode, and RTL** weren't bolt-ons. The base layer respected `prefers-reduced-motion` and `prefers-color-scheme`, and the layout supported `dir="rtl"` because the product had to ship to right-to-left audiences in Israel.
+
+### CI/CD quality gate
+
+I integrated Playwright + axe-core into CI as a quality gate. Every PR ran a full a11y regression sweep before merge — failing accessibility violations blocked the PR alongside failing tests. Two months in, accessibility was a green-check thing, not a "we'll fix it later" thing.
+
+<FigurePlaceholder
+  caption="Accessibility framework — primitives, composed components, and the CI test gate."
+  aspectRatio="16/9"
+/>
+
+### Cross-jurisdiction state machine
+
+The dashboard's hardest engineering problem: a customer can have filings in 35+ jurisdictions, each with a different methodology, each in a different state (draft, in-progress, submitted, accepted, rejected, overdue). The UI had to read accurately at a glance without overwhelming. I modeled it as a state machine that compressed each filing into a canonical set of states, then worked with the designer on a visual language that telegraphed each one without relying on text labels alone — icon + color + microcopy together.
+
+<FigurePlaceholder
+  caption="Filing state machine — canonical states, transitions, and the visual treatment for each."
+  aspectRatio="16/9"
+/>
+
+## Outcome
+
+<MetricGrid>
+  <Metric value="#2" label="Revenue product at Syndio" caption="Second-largest revenue line, behind only PayEQ." />
+  <Metric value="35" label="Jurisdictions at launch" caption="Across 43 countries — EU, UK, Australia, Israel, Japan, Switzerland, US states." />
+  <Metric value="0" label="Net a11y regressions" caption="In the first year shipping under the Playwright + axe CI gate." />
+</MetricGrid>
+
+Beyond the metrics, the deeper outcome was procedural: this was the first Syndio product to ship with accessibility as a structural property of the codebase rather than an audit at the end. The framework outlived the launch — every product since has piggybacked on it.
+
+<div className="mt-10 md:mt-12">
+  <div className="mb-6 h-px w-10 bg-accent" aria-hidden="true" />
+  <h2 className="text-[length:var(--text-h2)] font-bold leading-[1.05] tracking-tight">
+    Reflection
+  </h2>
+</div>
+
+<FigurePlaceholder
+  caption="Snapshot of the Global Pay Reports Figma file — all flows, jurisdiction variants, and accessibility annotations in one place."
+  aspectRatio="16/9"
+/>
+
+One product, 35 jurisdictions, a regulatory landscape that keeps moving, and an accessibility framework that became the company standard. A few things I'll carry into the next from-scratch product:
+
+- **Accessibility as load-bearing infrastructure.** Building WCAG into the primitives and putting axe in CI from the first commit was the highest-leverage decision of the project. Every later feature inherited compliance for free; retrofitting would have cost an order of magnitude more time.
+- **Show your work as a design principle.** Compliance products live or die on their audit trail. Customers don't trust numbers they can't reconstruct. Every state-changing interaction in the product can answer *why* alongside *what*.
+- **Make jurisdiction differences explicit.** Hiding methodological differences in the name of a clean UI is a compliance lie. The dashboard tells customers that Germany ≠ Spain, on purpose.
