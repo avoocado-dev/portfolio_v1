@@ -18,10 +18,10 @@ export default function Home() {
 function Header() {
   return (
     <header className="mx-auto w-full max-w-6xl px-6 md:px-8 flex items-center justify-end pt-8 pb-4">
-      <nav aria-label="Primary" className="flex items-center gap-2 text-base font-medium">
+      <nav aria-label="Primary" className="flex items-center gap-5 text-sm font-medium">
         <a
           href="/antonio-aguilar-resume.pdf"
-          className="rounded-full px-4 py-2 hover:bg-surface hover:text-accent transition-colors"
+          className="hover:text-accent transition-colors"
         >
           Resume
         </a>
@@ -29,13 +29,13 @@ function Header() {
           href="https://www.linkedin.com/in/avoantonio"
           target="_blank"
           rel="noreferrer"
-          className="rounded-full px-4 py-2 hover:bg-surface hover:text-accent transition-colors"
+          className="hover:text-accent transition-colors"
         >
           LinkedIn
         </a>
         <a
           href="mailto:antonioaguilar51@gmail.com"
-          className="rounded-full px-4 py-2 hover:bg-surface hover:text-accent transition-colors"
+          className="hover:text-accent transition-colors"
         >
           Contact
         </a>
@@ -43,7 +43,7 @@ function Header() {
           href="https://github.com/antiaguilar/portfolio"
           target="_blank"
           rel="noreferrer"
-          className="rounded-full px-4 py-2 hover:bg-surface hover:text-accent transition-colors"
+          className="hover:text-accent transition-colors"
         >
           GitHub
         </a>
@@ -63,7 +63,7 @@ function Hero() {
               className="size-2 rounded-full bg-accent"
             />
             <span className="text-xs uppercase tracking-[0.18em] font-medium text-muted">
-              Open to UX engineering roles
+              Open to Frontend & UX engineering roles
             </span>
           </div>
 
@@ -73,12 +73,12 @@ function Hero() {
 
           <p className="mt-6 text-2xl font-medium leading-snug text-foreground/85 max-w-xl">
             <span className="text-accent">
-              I sit  between design, engineering, and product
+              I sit between engineering, design, and product
             </span>
           </p>
 
           <p className="mt-8 text-lg text-foreground/75 max-w-xl leading-relaxed">
-            My eye for design, 7+ years of technical experience, and love for product uniquely position me to lead your UX.
+            My 7+ years of technical experience, eye for design, and love for product uniquely position me to lead your UX.
             Wide breadth of skills attained from working at Microsoft, midsize, and startup companies.
           </p>
         </div>

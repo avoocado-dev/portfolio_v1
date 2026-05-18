@@ -2,3 +2,9 @@ node_modules
 
 # production
 /build
+
+# Next.js build output
+.next/
+
+# Claude Code
+.claude/

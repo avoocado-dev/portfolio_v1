@@ -13,7 +13,7 @@ export const metadata = {
 <CaseStudyHero
   eyebrow="Case study · Syndio"
   title="Pay Equity Analysis"
-  lede="The field of pay equity has previously been dominated by legal consultants because of its focus on compliance. When Syndio was founded in 2017, it was the first to productize the offering, transforming weeks of meetings and endless PDF reports into a visual analysis delivered directly to customers. In 2024 we started our much needed redesign of it's most used feature."
+  lede="The field of pay equity has previously been dominated by legal consultants because of its focus on compliance. When Syndio was founded in 2017, it was the first to productize the offering, transforming weeks of meetings and endless PDF reports into a visual analysis delivered directly to customers. In 2024 we started our much needed redesign of our most used feature."
   meta={[
     { label: "Role", value: "Frontend Engineer · UX" },
     { label: "Timeframe", value: "2024 — 2025" },
@@ -72,7 +72,7 @@ The controls panel was the cleanup pass. Editing-in-place sounds simple, but wit
   frameClassName="bg-white"
 />
 
-The page renders in more states than the happy path suggests: different pay-equity statuses, pre- and post-budget views, error states, and settings-change cascades. The designer and I worked through these together — she sketched the variants, I traced what each one meant in the component tree, and we iterated until every branch in code had a corresponding design. Our PM then referenced the final package to write the epics.
+The page renders in more states than the happy path suggests: different pay-equity statuses, pre- and post-budget views, error states, and settings-change cascades. The designer and I worked through these together. She sketched the variants, I traced what each one meant in the component tree, and we iterated until every branch in code had a corresponding design. Our PM then referenced the final package to write the epics.
 
 The process was transparent throughout. Design, product squad, and the internal stakeholders were in the room at every step. That kept buy-in high and pulled us toward a final design everyone could stand behind. One of our domain experts said, "I didn't even know I needed this until I saw it."
 
@@ -92,30 +92,16 @@ The process was transparent throughout. Design, product squad, and the internal 
 />
 
 <SectionIntro title="Implementation" label="About 4 months">
-  Our squad always had several projects in flight, so I was the only front-end engineer assigned to this redesign. Tight budget, but the small team meant clear ownership and a short loop between design changes and shipped code.
+  I was the only front-end engineer assigned to this redesign. The clear ownership and my interest in design + product resulted in a short loop between design changes and shipped code.
 </SectionIntro>
 
-### Building the new primitives
+### Building the UI Components
 
-I built the major new pieces — stats bar, controls menu, tooltips — as keyboard-accessible, design-system-ready components so they could be reused on future projects. The designer and I did design QA together as each piece landed; the QA tester and I paired on accessibility coverage in parallel, so by the time the feature reached release it had been pressure-tested against keyboard navigation, screen reader output, and focus management.
+I leveraged React 19 + TypeScript to build the components. Bundling was done through webpack. State was handled through Redux and RTK Query. Routing done through React Router v5. Testing done through Jest + React Testing Library. Playwright for E2E testing. Styling done through SCSS
 
-### Statistical-model scenarios and corner cases
+I built the major new pieces (stats bar, controls menu, tooltips) as keyboard-accessible, design-system-ready components so they could be reused on future projects. This was a major point of emphasis. As a growing midsize startup building reusable component is key.
 
-Our squad's QA tester is renowned for knowing the product inside out — nothing gets past her. As we started to wire up the redesign, she surfaced several scenarios the spec hadn't covered: Employee counts
-
-**The problem.** Each group has a total headcount, but each comparison inside the group has a different effective headcount (Men vs. Women might have 95; White vs. Black, 70; White vs. Hispanic, 55). Employees get dropped from a comparison for a handful of reasons — missing data, missing comp, manual ignore — and the legacy UI didn't surface most of them. Customers couldn't tell at a glance how many people their analysis was actually running on.
-
-**The solution.** We added two new stats to the stats bar — *Included* (the actual comparison headcount) and *Omitted* (the dropped employees) — plus a tooltip on *Omitted* that enumerates every drop reason. I built it as a generic stat slot so the pattern could be reused for future comparisons; the designer and I co-wrote the tooltip copy so it stayed accurate to the model.
-
-<Figure
-  src="/case-studies/pay-equity-ssg-stats-bar.png"
-  alt="The redesigned stats bar showing Total (1,234), Included (1,123), Men (568, 51%), Women (555, 49%), Omitted (111), Impacted side (Women), and Budget (Intersectional). Two tooltips are open: the Included tooltip explains it's the number of employees included in this comparison's statistical model, and the Omitted tooltip lists the reasons an employee can be omitted — Neither (not associated with either comparison side), Ignored (manually removed from the analysis), Missing data (missing applied controls or compensation data, not counting imputed data), and Zero compensation (when log normalization is enabled and compensation is 0)."
-  caption="The new stats bar with “Included” and “Omitted” stats and tooltips."
-  bare
-  frameClassName="bg-white"
-/>
-
-## Corner case: Small groups
+### Corner case: Small groups
 
 **The problem.** Syndio has a concept called *small groups* — groups where the headcount is too small for the statistical model to land with confidence. The triggering conditions are deceptively dense: a group can be "small" if it has fewer than 30 employees total, or if one side of the comparison has fewer than 10 (5, on some configurations), or if applied controls push the column count above the row count. The legacy UI told customers when a group was small but couldn't communicate *which kind*, and internally not everyone on the team could keep all the triggering conditions straight.
 
@@ -136,8 +122,6 @@ Our squad's QA tester is renowned for knowing the product inside out — nothing
   bare
   frameClassName="bg-white"
 />
-
-Engineers and QA testers tend to speak the same language — both are looking for what breaks. The unusual thing on this project was how early in the process the QA collaboration started. Most of the corner cases that became real designs surfaced before the first PR landed. The small-group matrix the designer built to keep the scenarios straight was so effective that even one of our domain experts asked her for a copy.
 
 ## Outcome
 

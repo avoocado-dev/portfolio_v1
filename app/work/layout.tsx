@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { ScrollToTop } from "./ScrollToTop";
 
 export default function WorkLayout({
   children,
@@ -8,11 +9,12 @@ export default function WorkLayout({
 }) {
   return (
     <>
+      <ScrollToTop />
       <Container as="header" className="max-w-4xl flex items-center justify-between pt-8 pb-4">
-        <Link href="/" className="text-sm hover:text-accent transition-colors">
+        <Link href="/" className="text-sm font-medium hover:text-accent transition-colors">
           ← All work
         </Link>
-        <nav aria-label="Primary" className="flex items-center gap-5 text-sm">
+        <nav aria-label="Primary" className="flex items-center gap-5 text-sm font-medium">
           <a
             href="/antonio-aguilar-resume.pdf"
             className="hover:text-accent transition-colors"
@@ -20,10 +22,26 @@ export default function WorkLayout({
             Resume
           </a>
           <a
+            href="https://www.linkedin.com/in/avoantonio"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-accent transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
             href="mailto:antonioaguilar51@gmail.com"
             className="hover:text-accent transition-colors"
           >
             Contact
+          </a>
+          <a
+            href="https://github.com/antiaguilar/portfolio"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-accent transition-colors"
+          >
+            GitHub
           </a>
         </nav>
       </Container>

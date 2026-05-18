@@ -9,23 +9,20 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "pay-equity-analysis",
     title: "Pay Equity Analysis",
-    summary:
-      "The field of pay equity has previously been dominated by legal consultants because of its focus on compliance, but when Syndio was founded in 2017, it was the first to productive the offering, transforming weeks of meetings and endless PDF reports to a visual analysis delivered directly to customers.",
+    summary: "UI Revamp of Syndio's flagship service",
     tags: ["Data Visualization", "UX Strategy", "Enterprise"],
   },
   {
     slug: "global-pay-reports",
     title: "Global Pay Reports",
-    summary:
-      "Built the frontend from scratch for Syndio's compliance product covering 35 jurisdictions across 43 countries. WCAG 2.1 AA from day one, Playwright + axe in CI as a quality gate. Now the company's 2nd-largest revenue line.",
+    summary: "Syndio's newest service to meet a new pay reporting vertical",
     tags: ["UX Strategy", "Accessibility", "Enterprise"],
   },
   {
-    slug: "right-to-information",
-    title: "Right to Information",
-    summary:
-      "Built the frontend for Syndio's Article 7 product — pay-comparison data for every employee, delivered through six integration paths including HRIS push via Workato and one-click reports in all 24 official EU languages. Now the company's 3rd-largest revenue line.",
-    tags: ["UX Strategy", "Integrations", "Enterprise"],
+    slug: "syndi",
+    title: "Syndi",
+    summary: "Syndio's LLM Chatbox",
+    tags: ["AI", "UX Strategy", "Enterprise"],
   },
 ];
 
