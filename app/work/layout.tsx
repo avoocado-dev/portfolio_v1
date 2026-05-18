@@ -36,7 +36,7 @@ export default function WorkLayout({
             Contact
           </a>
           <a
-            href="https://github.com/antiaguilar/portfolio"
+            href="https://github.com/avoocado-dev/portfolio_v1"
             target="_blank"
             rel="noreferrer"
             className="hover:text-accent transition-colors"
