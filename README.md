@@ -1,6 +1,6 @@
 # avoantonio.com
 
-Personal portfolio for Antonio Aguilar Gomez — UX Engineer.
+Personal portfolio for Antonio Aguilar Gomez — Senior Software Engineer.
 
 ## Stack
 

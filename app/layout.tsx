@@ -12,15 +12,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://avoantonio.com"),
   title: {
-    default: "Antonio Aguilar Gomez — UX Engineer",
+    default: "Antonio Aguilar Gomez — Full stack Engineer",
     template: "%s · Antonio Aguilar Gomez",
   },
   description:
-    "UX Engineer based in Los Angeles. I sit between design and engineering — turning research into shipped, accessible, AI-augmented enterprise experiences.",
+    "Full stack Engineer based in Los Angeles. I sit between design and engineering — turning research into shipped, accessible, AI-augmented enterprise experiences.",
   openGraph: {
-    title: "Antonio Aguilar Gomez — UX Engineer",
+    title: "Antonio Aguilar Gomez — Full stack Engineer",
     description:
-      "UX Engineer based in Los Angeles. I sit between design and engineering.",
+      "Full stack Engineer based in Los Angeles. I sit between design and engineering.",
     url: "https://avoantonio.com",
     siteName: "avoantonio.com",
     locale: "en_US",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Antonio Aguilar Gomez — UX Engineer",
+    title: "Antonio Aguilar Gomez — Full stack Engineer",
     description:
-      "UX Engineer based in Los Angeles. I sit between design and engineering.",
+      "Full stack Engineer based in Los Angeles. I sit between design and engineering.",
   },
   robots: { index: true, follow: true },
 };

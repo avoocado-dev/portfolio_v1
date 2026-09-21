@@ -63,7 +63,7 @@ function Hero() {
               className="size-2 rounded-full bg-accent"
             />
             <span className="text-xs uppercase tracking-[0.18em] font-medium text-muted">
-              Open to Frontend & UX engineering roles
+              Open to Full stack & Frontend roles
             </span>
           </div>
 
