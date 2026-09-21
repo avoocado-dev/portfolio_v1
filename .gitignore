@@ -8,3 +8,8 @@ node_modules
 
 # Claude Code
 .claude/
+# MCP server build output
+mcp/dist/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
